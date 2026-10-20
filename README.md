@@ -111,7 +111,17 @@ Qualitative comparison on Urban100 `img031` (×4):
   <img src="assets/qual_img031_x4.png" alt="Qualitative comparison" width="100%">
 </p>
 
-Video super-resolution demo (×4, HDR10 source, left: low-res input upscaled with nearest
+### 🎥 Video super-resolution in action
+
+Click the preview to watch PCLM-SR upscaling a video ×4 on YouTube:
+
+<p align="center">
+  <a href="https://youtu.be/VOXEtWddqhA">
+    <img src="https://img.youtube.com/vi/VOXEtWddqhA/maxresdefault.jpg" alt="PCLM-SR video super-resolution demo on YouTube" width="80%">
+  </a>
+</p>
+
+Frame crop from the same demo (×4, HDR10 source, left: low-res input upscaled with nearest
 neighbour, right: PCLM-SR ρ = 0.5):
 
 <p align="center">
@@ -312,6 +322,7 @@ The checkpoints of the study are `experiments/rho_<rho>_x<scale>/seed0/best.pth`
 ## 🎬 6. Video super-resolution
 
 Two streaming tools, both based on ffmpeg pipes: no frame is ever written to disk.
+A demo of the result is on YouTube: https://youtu.be/VOXEtWddqhA
 
 **Create a low-resolution test video** from a high-resolution one (MATLAB bicubic, same kernel as
 the training data; lossless H.264 by default so the LR frames stay clean):
