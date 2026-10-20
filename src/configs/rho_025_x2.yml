@@ -1,0 +1,30 @@
+name: rho_025_x2
+manual_seed: 0
+scale: 2
+arch: pclmsr
+variant: pclmsr_x2
+network_g: {embed_dim: 60, num_groups: 4, blocks_per_group: 6, d_state: 10, expand: 1.5,
+  local_ratio: 2, le_ratio: 4, local_type: bottleneck, scan_directions: 4, local_skip: true,
+  residual_scaling: true, fuse_residual_scale: false, use_eca: true, use_le: true,
+  use_rfr: false, upsampler: pixelshuffledirect, img_range: 1.0, in_chans: 3, mamba_ratio: 0.25}
+datasets:
+  train_hr: [../datasets/DIV2K/DIV2K_train_HR]
+  train_lr: [../datasets/DIV2K/DIV2K_train_LR_bicubic/X2]
+  val_hr: [../datasets/DIV2K/DIV2K_valid_HR]
+  val_lr: [../datasets/DIV2K/DIV2K_valid_LR_bicubic/X2]
+  filename_tmpl: '{}x{scale}'
+  hr_patch_size: 128
+  batch_size: 32
+  num_workers: 8
+train:
+  optimizer: 'Adam(betas=(0.9, 0.99), weight_decay=0)  # costante in train.py'
+  lr: 0.0002
+  milestones: [250000, 400000, 450000, 475000]
+  gamma: 0.5
+  total_iter: 500000
+  loss: {type: L1Loss, loss_weight: 1.0, reduction: mean}
+  ema_decay: 0
+  cudnn_benchmark: false
+  deterministic: false
+path: {experiments_root: ./experiments, pretrain_network_g: null}
+logger: {save_checkpoint_freq: 100000, save_latest_freq: 5000, val_freq: 5000, print_freq: 200}

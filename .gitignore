@@ -1,0 +1,24 @@
+# data, videos, trained models and experiment outputs (distributed separately)
+datasets/
+src/experiments/
+src/checkpoints/
+src/results/
+*.pth
+*.mp4
+*.log
+
+# third-party baseline code (clone with: bash src/setup_env.sh --clone-repos)
+src/repos/
+
+# internal documents
+archive/
+INVENTARIO_FILE.md
+
+# tooling
+.idea/
+.vscode/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+.DS_Store
